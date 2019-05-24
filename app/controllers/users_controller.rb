@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
+      render :new
     end
   end
 
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :username)
+    params.require(:user).permit(:first_name, :last_name, :email, :username, :password)
   end
 
 end
