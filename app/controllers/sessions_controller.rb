@@ -1,3 +1,7 @@
+# Controller that handles login and logout status.
+# A User can either be logged in or logged out.
+# Only controller actions concerned with creating and destroying a session
+# are defined.
 class SessionsController < ApplicationController
   def new; end
 
