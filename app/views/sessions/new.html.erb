@@ -1,9 +1,32 @@
 <h3>Log In</h3>
 
 <%= form_tag session_path, method: :post do %>
-  <%= label_tag :email %>
-  <%= email_field_tag :email %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Login" %>
+
+  <%= content_tag :div, class: "row" do %>
+
+    <%= content_tag :div, class: "input-field col s12" do %>
+      <%= tag.i "email", class: "material-icons prefix"%>
+      <%= label_tag :email %>
+      <%= email_field_tag :email, nil %>
+    <% end %>
+
+  <% end %>
+
+  <%= content_tag :div, class: "row" do %>
+
+    <%= content_tag :div, class: "input-field col s12" do %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    <% end %>
+
+  <% end %>
+
+  <%= content_tag :div, class: "row" do %>
+
+    <%= content_tag :div, class: "col s12" do %>
+      <%= submit_tag "Login", class: "waves-effect waves-light btn" %>
+    <% end %>
+
+  <% end %>
+
 <% end %>
