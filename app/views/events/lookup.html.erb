@@ -1,0 +1,7 @@
+<%= form_tag events_path do %>
+  <label>Please select the location you're interested in:</label><br>
+  
+  <%= select_tag :location, options_for_select(@locations), prompt: 'Select Location' %>
+
+  <%= submit_tag "Submit" %>
+<% end %>
