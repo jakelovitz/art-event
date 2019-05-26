@@ -15,6 +15,7 @@
   <%= content_tag :div, class: "row" do %>
 
     <%= content_tag :div, class: "input-field col s12" do %>
+      <%= tag.i "lock", class: "material-icons prefix" %>
       <%= label_tag :password %>
       <%= password_field_tag :password %>
     <% end %>

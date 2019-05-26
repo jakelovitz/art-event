@@ -7,6 +7,7 @@
 <% end %>
 
 <%= form_for @user do |f| %>
+
   <%= content_tag :div, class: "row" do %>
 
     <%= content_tag :div, class: "input-field col s6" do %>
@@ -36,6 +37,7 @@
   <%= content_tag :div, class: "row" do %>
 
     <%= content_tag :div, class: "input-field col s12" do %>
+      <%= tag.i "lock", class: "material-icons prefix" %>
       <%= f.label :password %>
       <%= f.password_field :password %>
     <% end %>
@@ -49,4 +51,5 @@
     <% end %>
 
   <% end %>
+
 <% end %>
