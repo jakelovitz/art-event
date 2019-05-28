@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resource :session, only: %i[new create destroy]
   root to: redirect('/session/new')
 
+  resources :user_events, only: %i[create destroy]
 
   #events
-  resources :events, only: %i[index]
   get '/events/lookup', to: 'events#lookup', as: 'lookup'
+  resources :events, only: %i[index, show]
   post '/events', to: 'events#query_api_with_location'
 end

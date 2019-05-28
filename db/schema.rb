@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_143511) do
+ActiveRecord::Schema.define(version: 2019_05_28_203838) do
 
   create_table "events", force: :cascade do |t|
     t.string "event_name"
@@ -32,11 +32,15 @@ ActiveRecord::Schema.define(version: 2019_05_28_143511) do
     t.string "venue_type"
   end
 
+  create_table "user_events", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "username"
     t.string "password_digest"
     t.string "session_token"
     t.datetime "created_at", null: false

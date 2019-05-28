@@ -2,7 +2,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
-  def show; end
+  def show
+    user_events = UserEvent.where(user_id: current_user.id).map(&:event_id).uniq
+    @events = Event.where(id: user_events)
+  end
 
   def new
     @user = User.new

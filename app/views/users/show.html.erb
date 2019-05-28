@@ -1,2 +1,10 @@
 <h3><%= @user.first_name %></h3>
+<hr>
+<br>
+
+<% @events.each do |event| %>
+  <p><%= event.event_name %></p>
+<% end %>
+
+<br>
 <%= button_to 'Logout', { controller: :sessions , action: :destroy }, method: :delete %>

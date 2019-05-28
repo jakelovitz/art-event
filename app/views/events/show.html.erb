@@ -1,1 +1,8 @@
-hey
+<h3><%= @event.event_name %></h3>
+
+<%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
+
+<%= form_tag user_events_path, method: :post  do %>
+  <%= hidden_field_tag :event_id, @event.id %>
+  <%= submit_tag current_user.events.map(&:id).include?(@event.id) ? "Remove Event" : "Save Event", class: "waves-effect waves-light btn" %>
+<% end %>
