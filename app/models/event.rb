@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id                :integer          not null, primary key
+#  event_name        :string
+#  venue_name        :string
+#  address           :string
+#  phone             :string
+#  directions        :string
+#  neighborhood      :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  opening_hour      :string
+#  closing_hour      :string
+#  event_description :text
+#  img_url           :string
+#  admission         :string
+#  date_start        :date
+#  date_end          :date
+#  api_id            :string
+#  venue_type        :string
+#
+
 class Event < ApplicationRecord
 
   def self.locations
@@ -31,8 +55,8 @@ class Event < ApplicationRecord
   end
     
   def self.get_nyartbeat_by_location(params)
-    @location = RestClient.get("http://www.nyartbeat.com/list/event_area_#{params[:location]}") #alter URL by input
-			Crack::XML.parse(@location)
+    location = RestClient.get("http://www.nyartbeat.com/list/event_area_#{params[:location]}") #alter URL by input
+			Crack::XML.parse(location)
   end
 
 end

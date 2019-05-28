@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     end
 
 		def query_api_with_location
-			location = Event.get_nyartbeat_by_location(params)
+			@neighborhood = Event.get_nyartbeat_by_location(params)
         byebug
 		end
 		
@@ -24,15 +24,42 @@ class EventsController < ApplicationController
     def show
     end
 
-    private
+    def display_api_event
+      @all_events.each do |event|
+        temp_event = Event.new(event_name: event)
+        temp_event.event_name = event['Name']
+        temp_event.venue_name = event['Venue']['Name']
+        temp_event.address = event['Venue']['Address']
+        temp_event.phone = event['Venue']['Phone']
+        temp_event.directions = event['Venue']['Access']
+        temp_event.neighborhood = event['Venue']['Area']
+        temp_event.opening_hour = event['Venue']['OpeningHour']
+        temp_event.closing_hour = event['Venue']['ClosingHour']
+        temp_event.event_description = event['Description']
+        temp_event.img_url = event['Image'].last['src'].chomp("-170")
+        temp_event.admission = event['Price']
+        temp_event.date_start = event['DateStart']
+        temp_event.date_end = event['DateEnd']
+        temp_event.api_id = event['id']
+        temp_event.venue_type = event['Venue']['Type']
+      end
+    end
 
-    # def event_params
-    # 	params.require(:event).permit(:)
+    def fetch_events(location)
+      @all_events = []
+      api = query_api_with_location(location)['Events']['Event']
+      api.each do |event|
+        @all_events << event
+      end
+      @all_events
+    end
+
+    # def fetch_event_name
+    #   @event_value.each do |event|
+    #     event['Name']
+
     # end
 
-		# def query_api_with_location(params)
-		# 	location = RestClient.get("http://www.nyartbeat.com/list/event_area_#{URI.encode(params)}") #alter URL by input
-		# 	Crack::XML.parse(location)
-		# end
+    private
 
 end
