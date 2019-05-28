@@ -1,7 +1,9 @@
 <%= form_tag events_path do %>
   <label>Please select the location you're interested in:</label><br>
-  
-  <%= select_tag :location, options_for_select(@locations), prompt: 'Select Location' %>
 
-  <%= submit_tag "Submit" %>
+  <%= content_tag :div, class: "input-field col s12" do %>
+   <%= select_tag :location, options_for_select(@locations), prompt: 'Select Location' %>
+  <% end %>
+
+  <%= submit_tag "Submit", class: "waves-effect waves-light btn" %>
 <% end %>
