@@ -5,7 +5,7 @@ class Event < ApplicationRecord
     event_locations = {
     "Queens": 'queens.en.xml',
     "Harlem/Bronx": 'harlem_bronx.en.xml',
-    "williamsburg": 'williamsburg.en.xml',
+    "Williamsburg": 'williamsburg.en.xml',
     "Dumbo/Other Brooklyn": 'dumbo_brooklyn.en.xml',
     "Upper East Side": 'upper_east_side.en.xml',
     "Midtown": 'midtown.en.xml',
