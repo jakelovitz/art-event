@@ -63,4 +63,3 @@ class EventsController < ApplicationController
     private
 
 end
-= event['Name']
