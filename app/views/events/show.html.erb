@@ -2,9 +2,6 @@
 
 <%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
 
-
-
-
 <% if @user_events.include?(@event.id) %>
   <%= form_tag({controller: "user_events", action: "destroy"}, method: "delete") do %>
     <%= hidden_field_tag :event_id, @event.id %>

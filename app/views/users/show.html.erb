@@ -3,7 +3,7 @@
 <br>
 
 <% @events.each do |event| %>
-  <p><%= event.event_name %></p>
+  <p><%=link_to event.event_name, event_path(event) %></p>
 <% end %>
 
 <br>
