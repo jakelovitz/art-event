@@ -1,4 +1,5 @@
 class UserEventsController < ApplicationController
+  before_action :ensure_logged_in, only: :create
 
   def create
     user_id = current_user.id
