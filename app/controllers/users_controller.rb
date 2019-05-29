@@ -1,6 +1,7 @@
 # Allows full CRUD operations for a user.
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :ensure_logged_in, only: %i[edit update destroy]
 
   def show
     user_events = UserEvent.where(user_id: current_user.id).map(&:event_id).uniq
@@ -32,6 +33,11 @@ class UsersController < ApplicationController
     else
       flash.now[:errors] = @user.errors.full_messages
     end
+  end
+
+  def destroy
+    User.destroy(current_user.id)
+    redirect_to new_user_path
   end
 
   private

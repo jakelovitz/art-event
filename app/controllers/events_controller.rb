@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :ensure_logged_in, only: %i[new show create]
   require 'rest-client'
   require 'crack'
    
