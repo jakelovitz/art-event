@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users, except: %i[index]
   resource :session, only: %i[new create destroy]
-  # root to: redirect('/session/new')
+
 
   resources :user_events, only: %i[create destroy]
 
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   match '/events' => redirect('/events/lookup'), via: :get
 
   get '/', to: 'landing_page#home', as: 'home'
+  root to: redirect('/')
 end
