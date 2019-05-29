@@ -24,7 +24,7 @@
       <%= content_tag :div, class: "card" do %>
 
         <%= content_tag :div, class: "card-image" do %>
-          <%= image_tag event.img_url, height: "600", width: "400" %>
+          <%= image_tag event.img_url, style: "max-width: 400" %>
           <%= content_tag :span, event.event_name, class: "card-title"  %>
         <% end %>
 
