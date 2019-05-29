@@ -27,6 +27,7 @@ class Event < ApplicationRecord
   has_many :user_create_events
   has_many :users, through: :user_create_events
   has_many :users, through: :user_events
+  has_one_attached :image
 
   validates :event_name, :venue_name, :address, :neighborhood, presence: true
 
