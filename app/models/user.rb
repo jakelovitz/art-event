@@ -19,10 +19,6 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   before_save :downcase_email
 
-  # Validations
-  validates :session_token, :password_digest, presence: true
-  validates :email, uniqueness: { case_sensitive: false }, presence: true
-  validates :password, length: { minimum: 8 }, allow_nil: true, format: { with: PASSWORD_FORMAT }
 
   PASSWORD_FORMAT = /\A
   (?=.{8,})          # Must contain 8 or more characters
@@ -31,6 +27,12 @@ class User < ApplicationRecord
   (?=.*[A-Z])        # Must contain an upper case character
   (?=.*[[:^alnum:]]) # Must contain a symbol
 /x
+
+  # Validations
+  validates :session_token, :password_digest, presence: true
+  validates :email, uniqueness: { case_sensitive: false }, presence: true
+  validates :password, length: { minimum: 8 }, allow_nil: true, format: { with: PASSWORD_FORMAT }, on: :create
+
 
   # Readers, Writers, and Accessors
   attr_reader :password
