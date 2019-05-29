@@ -66,24 +66,27 @@ class Event < ApplicationRecord
   def self.create_from_api_call(events_array)
     events_array.each do |event|
       next if find_by(api_id: event['id'])
+      if event['Price'] == "Free" ? value = true : value = false
+      end
+        create(
+          event_name: event['Name'],
+          venue_name: event['Venue']['Name'],
+          address: event['Venue']['Address'],
+          phone: event['Venue']['Phone'],
+          directions: event['Venue']['Access'],
+          neighborhood: event['Venue']['Area'],
+          opening_hour: event['Venue']['OpeningHour'],
+          closing_hour: event['Venue']['ClosingHour'],
+          event_description: event['Description'],
+          img_url: event['Image'].last['src'].chomp('-170'),
+          admission: event['Price'],
+          date_start: event['DateStart'],
+          date_end: event['DateEnd'],
+          api_id: event['id'],
+          venue_type: event['Venue']['Type'],
+          free: value 
+        )
 
-      create(
-        event_name: event['Name'],
-        venue_name: event['Venue']['Name'],
-        address: event['Venue']['Address'],
-        phone: event['Venue']['Phone'],
-        directions: event['Venue']['Access'],
-        neighborhood: event['Venue']['Area'],
-        opening_hour: event['Venue']['OpeningHour'],
-        closing_hour: event['Venue']['ClosingHour'],
-        event_description: event['Description'],
-        img_url: event['Image'].last['src'].chomp('-170'),
-        admission: event['Price'],
-        date_start: event['DateStart'],
-        date_end: event['DateEnd'],
-        api_id: event['id'],
-        venue_type: event['Venue']['Type']
-      )
     end
   end
 end
