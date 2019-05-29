@@ -22,6 +22,7 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       flash[:errors] = @event.errors.full_messages
+      @locations = Event.locations
       render :new
     end
   end
@@ -29,6 +30,23 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user_events = current_user.events.map(&:id)
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+    @locations = Event.locations
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      @event.update(event_params)
+      redirect_to @event
+    else
+      flash[:errors] = @event.errors.full_messages
+      @locations = Event.locations
+      render :edit
+    end
   end
 
 
