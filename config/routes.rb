@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   #events
   get '/events/lookup', to: 'events#lookup', as: 'lookup'
-  resources :events, only: %i[index, show]
+  resources :events, only: %i[index, show new create]
   post '/events', to: 'events#query_api_with_location'
 end
