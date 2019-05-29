@@ -15,6 +15,30 @@
 
   <body>
 
+    <%= content_tag :nav do %>
+
+      <%= content_tag :div, class: "nav-wrapper" do %>
+        <%= content_tag :div, class: "container" do%>
+          <%= link_to 'Home', home_path %>
+
+          <%= content_tag :ul, class: "right hide-on-med-and-down" do %>
+            <%= content_tag :li do %>
+
+              <% if current_user.nil? %>
+                <%= link_to 'Login', new_session_path, class: "waves-effect waves-light btn" %>
+                <%= link_to 'Signup', new_user_path, class: "waves-effect waves-light btn" %>
+              <% else %>
+                <%= link_to 'Logout', { controller: :sessions, action: :destroy }, method: :delete, class: "waves-effect waves-light btn" %>
+              <% end %>
+
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+
+    <% end %>
+
     <div class="container">
       <%= yield %>
     </div>
@@ -26,6 +50,7 @@
             $('select').formSelect();
         });
     </script>
+
   </body>
 
 </html>
