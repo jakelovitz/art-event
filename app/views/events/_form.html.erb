@@ -17,7 +17,7 @@
       <%= f.text_field :directions %>
 
       <%= f.label :neighborhood %>
-      <%= f.text_field :neighborhood %>
+      <%= f.collection_select :neighborhood, @locations, :first.to_s, :first.to_s %>
 
       <%= f.label :opening_hour %>
       <%= f.text_field :opening_hour %>
@@ -26,7 +26,7 @@
       <%= f.text_field :closing_hour %>
 
       <%= f.label :event_description %>
-      <%= f.text_field :event_description %>
+      <%= f.text_area :event_description %>
 
       <%= f.label :img_url %>
       <%= f.text_field :img_url %>
@@ -35,10 +35,10 @@
       <%= f.text_field :admission %>
 
       <%= f.label :date_start %>
-      <%= f.text_field :date_start %>
+      <%= f.date_field :date_start, class: 'datepicker' %>
 
       <%= f.label :date_end %>
-      <%= f.text_field :date_end %>
+       <%= f.date_field :date_end, class: 'datepicker' %>
 
       <%= f.label :venue_type %>
       <%= f.text_field :venue_type %>

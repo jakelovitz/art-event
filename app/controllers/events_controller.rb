@@ -11,11 +11,14 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @locations = Event.locations
   end
     
   def create
     @event = Event.new(event_params)
+    byebug
     #validation logic/redirects
+    redirect_to @event
   end
 
   def show
@@ -33,7 +36,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:user).permit(:event_name, :venue_name, :address, :phone, :directions, :neighborhood, :opening_hour, :closing_hour, :event_description, :img_url, :admission, :date_start, :date_end, :venue_type)
+    params.require(:event).permit(:event_name, :venue_name, :address, :phone, :directions, :neighborhood, :opening_hour, :closing_hour, :event_description, :img_url, :admission, :date_start, :date_end, :venue_type)
   end
 
 end
