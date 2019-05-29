@@ -26,6 +26,9 @@ class Event < ApplicationRecord
   has_many :user_events
   has_many :users, through: :user_events
 
+  validates :event_name, :venue_name, :address, :neighborhood, presence: true
+
+
   def self.locations
     {
       "Queens": 'queens.en.xml',
