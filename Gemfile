@@ -35,10 +35,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'rest-client'
+# gem 'cloudinary'
 gem 'crack'
-gem 'materialize-sass'
 gem 'jquery-rails'
+gem 'materialize-sass'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
