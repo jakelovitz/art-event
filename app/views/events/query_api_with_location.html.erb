@@ -29,12 +29,13 @@
         <% end %>
 
         <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :p, event.address %>
           <br>
-          <%= content_tag :p, event.event_description.nil? ? "API missing event description" : event.event_description[0..300] %>
+          <%= content_tag :p, event.event_description.nil? ? " " : truncate(event.event_description, length: 350, separator: ' ', omission: '...') %>
         <% end %>
 
         <%= content_tag :div, class: "card-action" do %>
-          <%= link_to "This is a link", event_path(event.id) %>
+          <%= link_to "More info", event_path(event.id) %>
         <% end %>
 
       <% end %>
