@@ -17,9 +17,13 @@ class EventsController < ApplicationController
     
   def create
     @event = Event.new(event_params)
-    byebug
-    #validation logic/redirects
-    redirect_to @event
+    if @event.valid?
+      @event.save
+      redirect_to @event
+    else
+      flash[:errors] = @event.errors.full_messages
+      render :new
+    end
   end
 
   def show

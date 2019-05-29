@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   resources :user_events, only: %i[create destroy]
 
-  #events
+  # events
   get '/events/lookup', to: 'events#lookup', as: 'lookup'
+  post '/events/api', to: 'events#query_api_with_location'
   resources :events, only: %i[index show new create]
-  post '/events', to: 'events#query_api_with_location'
   match '/events' => redirect('/events/lookup'), via: :get
 
   get '/', to: 'landing_page#home', as: 'home'
