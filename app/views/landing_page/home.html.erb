@@ -1,1 +1,23 @@
 <%= content_tag :h2, "This is the Landing Page!!!" %>
+<br>
+<%= content_tag :div, class: "row" do %>
+<% @popular_events.each do |event| %>
+
+
+
+    <%= content_tag :div, class: "col s12 m4" do %>
+      <%= content_tag :div, class: "card medium" do %>
+        <%= content_tag :div, class: "card-image" do %>
+          <%= image_tag event['Image'].last['src'].chomp('-170') %>
+          <%= content_tag :span, event["Name"], class: "card-title" %>
+        <% end %>
+        <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :p, event["Description"][0..300] + '...' %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+
+
+<% end %>
+<% end %>

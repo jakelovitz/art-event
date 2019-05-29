@@ -1,3 +1,7 @@
 class LandingPageController < ApplicationController
-  def home; end
+
+  def home
+    @popular_events = Popular.new.parse
+  end
+
 end
