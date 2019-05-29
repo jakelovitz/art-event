@@ -11,7 +11,6 @@ class UserEventsController < ApplicationController
     end
   end
 
-  #why isn't destroy_by working?
   def destroy
     user_id = current_user.id
     event_id = params[:event_id].to_i

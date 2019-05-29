@@ -14,3 +14,10 @@
   <% end %>
 <% end %>
 
+<% if @usereventcreate.user_id == current_user.id %>
+  <%= button_to "edit", edit_event_path, method: :get %>
+<% end %>
+
+<% if @usereventcreate.user_id == current_user.id %>
+  <%= button_to "delete", @event, method: :delete %>
+<% end %>
