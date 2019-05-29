@@ -15,7 +15,7 @@ class EventsController < ApplicationController
     @locations = Event.locations
   end
     
-  def create
+  def create_from_params
     @event = Event.new(event_params)
     byebug
     #validation logic/redirects

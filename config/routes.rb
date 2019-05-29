@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   #events
   get '/events/lookup', to: 'events#lookup', as: 'lookup'
-  resources :events, only: %i[index show new create]
   post '/events', to: 'events#query_api_with_location'
+  get '/events/new', to: 'events#new', as: 'new'
+  post '/events', to: 'events#create_from_params'
+  resources :events, only: %i[index show]
   match '/events' => redirect('/events/lookup'), via: :get
 
   get '/', to: 'landing_page#home', as: 'home'
