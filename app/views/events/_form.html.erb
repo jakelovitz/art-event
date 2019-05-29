@@ -1,0 +1,48 @@
+<h2>Create an Event!</h2>
+
+<%= form_for @event do |f| %>
+      <%= f.text_field :event_name %>
+      <%= f.label :event_name %>
+			<br><br><br>
+      <%= f.text_field :venue_name %>
+      <%= f.label :venue_name%>
+			<br><br><br>
+      <%= f.text_field :venue_type %>
+      <%= f.label :venue_type %>
+			<br><br><br>
+      <%= f.text_field :phone %>
+      <%= f.label :phone %>
+			<br><br><br>
+      <%= f.text_field :address %>
+      <%= f.label :address %>
+			<br><br><br><br>
+      <%= f.label :neighborhood %>
+      <%= f.collection_select :neighborhood, @locations, :first.to_s, :first.to_s, prompt: "Please select one of the following locations"  %>
+			<br><br>
+      <%= f.text_field :directions %><br>
+      <%= f.label :directions %>
+			<br><br><br>
+      <%= f.text_field :opening_hour %>
+      <%= f.label :opening_hour %>
+			<br><br><br>
+      <%= f.text_field :closing_hour %>
+      <%= f.label :closing_hour %><br>
+			<br><br><br>
+      <%= f.text_area :event_description %>
+      <%= f.label :event_description %>
+			<br><br><br>
+      <%= f.text_field :img_url %>
+      <%= f.label :img_url %>
+			<br><br><br>
+      <%= f.text_field :admission %>
+      <%= f.label :admission %>
+			<br><br><br>
+      <%= f.date_field :date_start, class: 'datepicker' %>
+      <%= f.label :date_start %>
+			<br><br><br>
+      <%= f.date_field :date_end, class: 'datepicker' %>
+      <%= f.label :date_end %>
+			<br><br><br>
+      <%= f.submit nil, class: "waves-effect waves-light btn" %>
+
+<% end %>

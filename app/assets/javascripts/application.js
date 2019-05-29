@@ -18,3 +18,8 @@
 // = require jquery_ujs
 // = require materialize
 // = require materialize-sprockets
+
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 20 // Creates a dropdown of 20 years to control year
+  });
