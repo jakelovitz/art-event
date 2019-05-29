@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
+  # before_filter :only => :edit
+  # load_and_authorize_resource
+  # check_authorization
   before_action :ensure_logged_in, only: %i[new show create]
+  before_action :check_created_by_user, only: %i[edit update destroy]
   require 'rest-client'
   require 'crack'
    
@@ -19,7 +23,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.valid?
       @event.save
-      @usereventcreate = UserCreateEvent.create(event_id: @event.id, user_id: current_user.id)
+      @usercreateevent = UserCreateEvent.create(event_id: @event.id, user_id: current_user.id)
       redirect_to @event
     else
       flash[:errors] = @event.errors.full_messages
@@ -29,14 +33,17 @@ class EventsController < ApplicationController
   end
 
   def show
+    # debugger
     @event = Event.find(params[:id])
     @user_events = current_user.events.map(&:id)
-    @usereventcreate = UserCreateEvent.find_by(event_id: @event.id, user_id: current_user.id)
+    @usercreateevent = UserCreateEvent.find_by(event_id: @event.id, user_id: current_user.id)
   end
 
   def edit
     @event = Event.find(params[:id])
     @locations = Event.locations
+    @usercreateevent = UserCreateEvent.create(event_id: @event.id, user_id: current_user.id)
+    # authorize! :edit, @event
   end
 
   def update
@@ -51,25 +58,33 @@ class EventsController < ApplicationController
     end
   end
 
-
   def destroy
     user_id = current_user.id
     @event = Event.find(params[:id])
-    @usereventcreate = UserCreateEvent.find_by(event_id: @event.id, user_id: current_user.id)
+    @usercreateevent = UserCreateEvent.find_by(event_id: @event.id, user_id: current_user.id)
     @event.destroy
       redirect_to user_path(user_id)
   end
-
-  # private
-
+  
   def query_api_with_location
     events_hash = Event.get_nyartbeat_by_location(params)
     location = events_hash.first['Venue']['Area']
     @events = Event.where(neighborhood: location)
   end
+  
+  private
+
+  def check_created_by_user
+    @event = Event.find(params[:id])
+    @usercreateevent = UserCreateEvent.find_by(event_id: @event.id, user_id: current_user.id)
+    # byebug
+    if @usercreateevent&.user_id == current_user.id
+    end
+  end
 
   def event_params
     params.require(:event).permit(:event_name, :venue_name, :address, :phone, :directions, :neighborhood, :opening_hour, :closing_hour, :event_description, :img_url, :admission, :date_start, :date_end, :venue_type)
   end
+  
 
 end
