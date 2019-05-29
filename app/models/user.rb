@@ -6,7 +6,6 @@
 #  first_name      :string
 #  last_name       :string
 #  email           :string
-#  username        :string
 #  password_digest :string
 #  session_token   :string
 #  created_at      :datetime         not null
@@ -18,12 +17,20 @@ class User < ApplicationRecord
   has_many :events, through: :user_events
 
   after_initialize :ensure_session_token
+  before_save :downcase_email
 
   # Validations
   validates :session_token, :password_digest, presence: true
-  validates :email, uniqueness: true, presence: true
-  # TODO: Possibly add additional validations for password. Require a sym? num?
-  validates :password, length: { minimum: 8 }, allow_nil: true
+  validates :email, uniqueness: { case_sensitive: false }, presence: true
+  validates :password, length: { minimum: 8 }, allow_nil: true, format: { with: PASSWORD_FORMAT }
+
+  PASSWORD_FORMAT = /\A
+  (?=.{8,})          # Must contain 8 or more characters
+  (?=.*\d)           # Must contain a digit
+  (?=.*[a-z])        # Must contain a lower case character
+  (?=.*[A-Z])        # Must contain an upper case character
+  (?=.*[[:^alnum:]]) # Must contain a symbol
+/x
 
   # Readers, Writers, and Accessors
   attr_reader :password
@@ -68,6 +75,11 @@ class User < ApplicationRecord
   # Retrieves current session_token of assigns a new one.
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
+  end
+
+  # Downcase the email for safety reasons.
+  def downcase_email
+    self.email = email.downcase
   end
 
 end
