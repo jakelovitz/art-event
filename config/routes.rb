@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get '/events/lookup', to: 'events#lookup', as: 'lookup'
   resources :events, only: %i[index, show]
   post '/events', to: 'events#query_api_with_location'
+  match '/events' => redirect('/events/lookup'), via: :get
 end
