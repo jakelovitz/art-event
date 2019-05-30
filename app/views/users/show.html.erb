@@ -10,6 +10,8 @@
 <% end %>
 
 <br>
-<% if current_user.id == @user.id %>
-<%= button_to 'Delete Account', { controller: :users, action: :destroy }, method: :delete %>
-<% end %>
+
+<%= button_to 'Delete Account', { controller: :users, action: :destroy }, method: :delete,
+              data: { confirm: 'This action is irreversible are you sure?' },
+              class: "btn waves-effect waves-light red accent-3" if current_user.id == @user.id %>
+
