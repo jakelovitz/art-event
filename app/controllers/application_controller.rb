@@ -34,5 +34,4 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 
-
 end

@@ -1,6 +1,9 @@
 <h3><%= @user.first_name %></h3>
 <hr>
 <br>
+<% if !!flash[:notice] %>
+  <%= flash[:notice]%>
+<% end %>
 
 <% @events.each do |event| %>
   <p><%=link_to event.event_name, event_path(event) %></p>
