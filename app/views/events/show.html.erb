@@ -1,5 +1,6 @@
+<br>
 <h3><%= @event.event_name %></h3>
-
+<br>
 <img src="<%= @event.img_url %>" class="responsive-img" alt="">
 
 <p><b>Venue: </b><%= @event.venue_name %></p>
@@ -21,7 +22,7 @@
 <p><b>End Date: </b><%= @event.date_end %></p>
 
 <p><b>Description: </b><%= @event.event_description %></p>
-
+<br>
 <%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
 <% if @event.image.attachment %>
   <%= image_tag @event.image %>
@@ -34,6 +35,7 @@
   <% end %>
 <%else%>
   <%= form_tag user_events_path, method: :post  do %>
+  <br> <br>
     <%= hidden_field_tag :event_id, @event.id %>
     <%= submit_tag "Save Event", class: "waves-effect waves-light btn" %>
   <% end %>
@@ -46,3 +48,4 @@
 <% if @usercreateevent&.user_id == current_user.id %>
   <%= button_to "delete", @event, method: :delete %>
 <% end %>
+<br><br><br>
