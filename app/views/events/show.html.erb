@@ -21,7 +21,7 @@
 
 <p><b>End Date: </b><%= @event.date_end.strftime("%B %d, %Y") %></p>
 
-<p><b>Description: </b><%= @event.event_description %></p>
+<p align="justify"><b>Description: </b><%= @event.event_description %></p>
 <br>
 <%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
 <% if @event.image.attachment %>
