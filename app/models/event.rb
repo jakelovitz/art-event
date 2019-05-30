@@ -31,7 +31,6 @@ class Event < ApplicationRecord
 
   validates :event_name, :venue_name, :address, :neighborhood, presence: true
 
-
   def self.locations
     {
       "Queens": 'queens.en.xml',
@@ -64,8 +63,12 @@ class Event < ApplicationRecord
     create_from_api_call(Crack::XML.parse(location)['Events']['Event'])
   end
 
-  private
+   def self.popular_parse_and_create
+    popular_events = RestClient.get('http://www.nyartbeat.com/list/event_mostpopular.en.xml')
+    create(Crack::XML.parse(popular_events)['Events']['Event'])
+  end
 
+  private
   def self.create_from_api_call(events_array)
     events_array.each do |event|
       next if find_by(api_id: event['id'])

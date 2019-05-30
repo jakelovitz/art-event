@@ -3,20 +3,22 @@
 <%= content_tag :div, class: "row" do %>
 <% @popular_events.each do |event| %>
 
-
-
+  
     <%= content_tag :div, class: "col s12 m4" do %>
-      <%= content_tag :div, class: "card medium" do %>
+      <%= content_tag :div, class: "card large" do %>
         <%= content_tag :div, class: "card-image" do %>
           <%= image_tag event['Image'].last['src'].chomp('-170') %>
           <%= content_tag :span, event["Name"], class: "card-title" %>
         <% end %>
         <%= content_tag :div, class: "card-content" do %>
-          <%= content_tag :p, event["Description"].nil? ? " " : truncate(event["Description"], length: 150, separator: ' ', omission: '...') %>
+          <strong><%= content_tag :p, event["Venue"]["Name"] %></strong><br>
+          <%= content_tag :p, event["Description"].nil? ? " " : truncate(event["Description"], length: 100, separator: ' ', omission: '...') %>
+            <%= content_tag :div, class: "card-action" do %>
+            <%= link_to "More info", event_path(Event.find_by(api_id: event['id'])) %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
-
 
 
 <% end %>
