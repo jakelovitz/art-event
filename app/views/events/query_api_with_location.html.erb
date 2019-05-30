@@ -9,7 +9,7 @@
       <%= content_tag :div, class: "card" do %>
 
         <%= content_tag :div, class: "card-image" do %>
-          <%= image_tag event.img_url, style: "max-width: 400" %>
+          <%= image_tag event.img_url, style: "max-width: 400" if event.img_url %>
           <%= content_tag :span, event.event_name, class: "card-title"  %>
         <% end %>
 
