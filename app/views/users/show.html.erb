@@ -10,5 +10,6 @@
 <% end %>
 
 <br>
-<%= button_to 'Logout', { controller: :sessions , action: :destroy }, method: :delete %>
+<% if current_user.id == @user.id %>
 <%= button_to 'Delete Account', { controller: :users, action: :destroy }, method: :delete %>
+<% end %>
