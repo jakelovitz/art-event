@@ -1,4 +1,4 @@
-
+<br><br>
 
 <% @events.each do |event| %>
 
@@ -9,7 +9,12 @@
       <%= content_tag :div, class: "card" do %>
 
         <%= content_tag :div, class: "card-image" do %>
-          <%= image_tag event.img_url, style: "max-width: 400" if event.img_url %>
+          <% if event.api_id.nil? && !!event.image.attachment %>
+            <%= image_tag(event.image, style: "max-width: 400") %>
+          <%else%>
+            <img src="<%=event.img_url%>" style: "max-width: 400">
+        <%end%>
+
           <%= content_tag :span, event.event_name, class: "card-title"  %>
         <% end %>
 
@@ -30,3 +35,4 @@
   <% end %>
 
 <% end %>
+<br>
