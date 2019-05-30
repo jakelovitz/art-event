@@ -71,7 +71,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @usercreateevent = UserCreateEvent.find_by(event_id: @event.id, user_id: current_user.id)
     if @usercreateevent.nil?
-      flash[:notice] = "You can't edit this event." 
+      flash[:notice] = "You can't edit this event."
       redirect_to user_path(current_user)
     else
     end
