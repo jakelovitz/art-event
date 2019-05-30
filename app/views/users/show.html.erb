@@ -8,7 +8,11 @@
 <% @events.each do |event| %>
   <ul class="collection">
     <li class="collection-item avatar">
-      <img src="<%=event.img_url%>" alt="" class="circle">
+      <% if event.api_id.nil? %>
+        <%= image_tag(event.image, alt:"", class:"circle") %>
+      <%else%>
+        <img src="<%=event.img_url%>" alt="" class="circle">
+      <%end%>
       <span class="title"><%=link_to event.event_name, event_path(event) %></span>
       <p><strong><%=event.venue_name%></strong><br>
          <%=event.event_description.nil? ? " " : truncate(event.event_description, length: 100, separator: ' ', omission: '...')%>
@@ -22,4 +26,3 @@
 <%= button_to 'Delete Account', { controller: :users, action: :destroy }, method: :delete,
               data: { confirm: 'This action is irreversible are you sure?' },
               class: "btn waves-effect waves-light red accent-3" if current_user.id == @user.id %>
-
