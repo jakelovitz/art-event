@@ -4,13 +4,6 @@ class ApplicationController < ActionController::Base
   # Methods to be used in views
   helper_method :current_user, :logged_in?
 
-  #cancan authorization gem
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
-    #instead of root, should be a page to display error
-  end
-
-
   # @return [User] or [nil]
   # Retrieves the current user based on their session token if
   # none is found returns nil
