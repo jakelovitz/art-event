@@ -1,4 +1,4 @@
-<%= content_tag :h2, "This is the Landing Page!!!" %>
+<%= content_tag :h2, "Browse Popular Events" %>
 <br>
 <%= content_tag :div, class: "row" do %>
 <% @popular_events.each do |event| %>
@@ -12,7 +12,7 @@
           <%= content_tag :span, event["Name"], class: "card-title" %>
         <% end %>
         <%= content_tag :div, class: "card-content" do %>
-          <%= content_tag :p, event["Description"][0..300] + '...' %>
+          <%= content_tag :p, event["Description"].nil? ? " " : truncate(event["Description"], length: 150, separator: ' ', omission: '...') %>
         <% end %>
       <% end %>
     <% end %>
