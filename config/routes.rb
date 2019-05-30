@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users, except: %i[index]
+  get 'users/validate/:id', to: 'users#validate', as: 'user_validate'
   resource :session, only: %i[new create destroy]
 
 

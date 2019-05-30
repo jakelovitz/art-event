@@ -1,6 +1,6 @@
 # Allows full CRUD operations for a user.
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy validate]
   before_action :ensure_logged_in, only: %i[edit update destroy]
 
   def show
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
+      SignupMailer.new_user(@user).deliver_now
       login(@user)
       redirect_to user_path(@user)
     else
@@ -38,6 +39,13 @@ class UsersController < ApplicationController
   def destroy
     User.destroy(current_user.id)
     redirect_to new_user_path
+  end
+
+  def validate
+    if @user
+      @user.update(validated: true)
+      redirect_to @user
+    end
   end
 
   private
