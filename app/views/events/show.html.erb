@@ -17,9 +17,9 @@
 
 <p><b>Closing Hour: </b><%= @event.closing_hour %></p>
 
-<p><b>Start Date: </b><%= @event.date_start %></p>
+<p><b>Start Date: </b><%= @event.date_start.strftime("%B %d, %Y") %></p>
 
-<p><b>End Date: </b><%= @event.date_end %></p>
+<p><b>End Date: </b><%= @event.date_end.strftime("%B %d, %Y") %></p>
 
 <p><b>Description: </b><%= @event.event_description %></p>
 <br>
