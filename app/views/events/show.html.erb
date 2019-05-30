@@ -1,5 +1,27 @@
 <h3><%= @event.event_name %></h3>
 
+<img src="<%= @event.img_url %>" class="responsive-img" alt="">
+
+<p><b>Venue: </b><%= @event.venue_name %></p>
+
+<p><b>Address: </b><%= @event.address %></p>
+
+<p><b>Neighborhood: </b><%= @event.neighborhood %></p>
+
+<p><b>Directions: </b><%= @event.directions %></p>
+
+<p><b>Phone: </b><%= @event.phone %></p>
+
+<p><b>Opening Hour: </b><%= @event.opening_hour %></p>
+
+<p><b>Closing Hour: </b><%= @event.closing_hour %></p>
+
+<p><b>Start Date: </b><%= @event.date_start %></p>
+
+<p><b>End Date: </b><%= @event.date_end %></p>
+
+<p><b>Description: </b><%= @event.event_description %></p>
+
 <%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
 <% if @event.image.attachment %>
   <%= image_tag @event.image %>

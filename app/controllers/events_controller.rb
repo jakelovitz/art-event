@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   end
 
   def index
+    redirect_to lookup_path
   end
 
   def new
