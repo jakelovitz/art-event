@@ -6,7 +6,15 @@
 <% end %>
 
 <% @events.each do |event| %>
-  <p><%=link_to event.event_name, event_path(event) %></p>
+  <ul class="collection">
+    <li class="collection-item avatar">
+      <img src="<%=event.img_url%>" alt="" class="circle">
+      <span class="title"><%=link_to event.event_name, event_path(event) %></span>
+      <p><strong><%=event.venue_name%></strong><br>
+         <%=event.event_description.nil? ? " " : truncate(event.event_description, length: 100, separator: ' ', omission: '...')%>
+      </p>
+    </li>
+  </ul>
 <% end %>
 
 <br>
