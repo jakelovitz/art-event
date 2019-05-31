@@ -1,67 +1,99 @@
 <%= form_for @event do |f| %>
-      <%= f.text_field :event_name %>
-      <%= f.label :event_name %>
-			<br><br><br>
-      <%= f.text_field :venue_name %>
-      <%= f.label :venue_name%>
-			<br><br><br>
-      <%= f.text_field :venue_type %>
-      <%= f.label :venue_type %>
-			<br><br><br>
+
+	<%= content_tag :div, class: "row" do %>
+
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%= f.label :event_name %>
+			<%= f.text_field :event_name %>
+		<% end %>
+
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%= f.label :venue_name%>
+			<%= f.text_field :venue_name %>
+			<% end %>
+
+	<% end %>
+
+	<%= content_tag :div, class: "row" do %>
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%= f.label :venue_type %>
+			<%= f.text_field :venue_type %>
+		<% end %>
+
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%= f.label :directions %>
+			<%= f.text_field :directions %>
+		<% end %>
+
+	<% end %>
+
+	<%= content_tag :div, class: "row" do %>
+		<%= content_tag :div, class: "input-field col s3" do %>
+			<%= f.label :phone %>
       <%= f.telephone_field :phone %>
-      <%= f.label :phone %>
-			<br><br><br>
+		<% end %>
+		<%= content_tag :div, class: "input-field col s3" do %>
+			<%= f.label :address %>
       <%= f.text_field :address %>
-      <%= f.label :address %>
-			<br><br><br><br>
-      <%= f.label :neighborhood %>
+		<% end %>
+		<%= content_tag :div, class: "input-field col s6" do %>
+      <%#= f.label :neighborhood %>
       <%= f.collection_select :neighborhood, @locations, :first.to_s, :first.to_s, prompt: "Please select one of the following locations"  %>
-			<br><br>
-      <%= f.text_field :directions %><br>
-      <%= f.label :directions %>
-			<br><br><br>
-     
+		<% end %>
+	<% end %>
+
+	<%= content_tag :div, class: "row" do %>
+		<% content_tag :div, class: "input-field col s12" do %>
+			<%= f.label :event_description %>
       <%= f.text_area :event_description %>
-      <%= f.label :event_description %>
-			<br><br><br>
-      <%= f.label :image %>
+		<% end %>
+	<% end %>
+
+	<%= content_tag :div, class: "row" do %>
+		<% content_tag :div, class: "input-field col s12" do %>
+      <%= f.label :image %><br><br>
       <%= f.file_field :image %>
-      <br><br><br>
-      <%= f.text_field :admission %>
-      <%= f.label :admission %>
-			<br><br><br>
+		<% end %>
+	<% end %>
 
-    <%= content_tag :div, class: "row" do %>
+	<%= content_tag :div, class: "row" do %>
+		<% content_tag :div, class: "input-field col s12" do %>
+		<%= f.label :admission %>
+		<%= f.text_field :admission %>
+		<% end %>
+	<% end %>
 
-    <%= content_tag :div, class: "input-field col s5" do %>
-      <%= f.text_field :opening_hour %>
-      <%= f.label :opening_hour %>
-    <% end %>
-			
-    <%= content_tag :div, class: "input-field col s5" do %>
-      <%= f.text_field :closing_hour %>
-      <%= f.label :closing_hour %><br>
-    <% end %>
-			<br><br><br>
+	<%= content_tag :div, class: "row" do %>
 
-    <% end %>
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%= f.label :opening_hour %>
+			<%= f.text_field :opening_hour %>
+		<% end %>
 
-      <%= content_tag :div, class: "row" do %>
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%= f.label :closing_hour %>
+			<%= f.text_field :closing_hour %>
+		<% end %>
 
-      <%= content_tag :div, class: "input-field col s5" do %>
-        <%= f.date_field :date_start, class: 'datepicker' %>
-        <%= f.label :date_start %>
-      <% end %>
 
-      <%= content_tag :div, class: "input-field col s5" do %>
-       
-        <%= f.date_field :date_end, class: 'datepicker' %>
-        <%= f.label :date_end %>
-      <% end %>
-			<br><br><br>
+	<% end %>
 
-      <% end %>
+	<%= content_tag :div, class: "row" do %>
 
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%#= f.label :date_start %>
+			<%= f.date_field :date_start, class: 'datepicker' %>
+		<% end %>
+
+		<%= content_tag :div, class: "input-field col s6" do %>
+			<%#= f.label :date_end %>
+			<%= f.date_field :date_end, class: 'datepicker' %>
+		<% end %>
+
+	<% end %>
+
+	<%#= content_tag :div, class: "row" do %>
       <%= f.submit nil, class: "waves-effect waves-light btn" %>
+	<%#= end %>
 
 <% end %>
