@@ -31,7 +31,7 @@
                 <%= link_to 'Login', new_session_path, class: "waves-effect waves-light btn" %>
                 <%= link_to 'Signup', new_user_path, class: "waves-effect waves-light btn" %>
               <% else %>
-                <%= link_to 'Register New Event', new_user_path, class: "waves-effect waves-light btn" %>
+                <%= link_to 'Register New Event', new_event_path, class: "waves-effect waves-light btn" %>
                  <%= link_to 'Find Event', lookup_path, class: "waves-effect waves-light btn" %>
                 <%= link_to 'Profile', user_path(current_user.id), class: "waves-effect waves-light btn" %>
                 <%= link_to 'Logout', { controller: :sessions, action: :destroy }, method: :delete, class: "waves-effect waves-light btn" %>

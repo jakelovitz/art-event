@@ -33,7 +33,7 @@ class User < ApplicationRecord
   # Validations
   validates :session_token, :password_digest, presence: true
   validates :email, uniqueness: { case_sensitive: false }, presence: true
-  validates :password, length: { minimum: 8 }, allow_nil: true, format: { with: PASSWORD_FORMAT }, on: :create
+  validates :password, length: { minimum: 8 }, allow_nil: true, format: { with: PASSWORD_FORMAT }
 
 
   # Readers, Writers, and Accessors

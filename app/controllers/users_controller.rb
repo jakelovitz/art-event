@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
+      render :edit
     end
   end
 

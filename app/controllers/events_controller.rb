@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   def query_api_with_location
     events_hash = Event.get_nyartbeat_by_location(params)
     location = events_hash.first['Venue']['Area']
-    @events = if params['Filter Free']
+    @events = if params[:filter_free]
                 Event.where(neighborhood: location, free: true)
               else
                 Event.where(neighborhood: location)
