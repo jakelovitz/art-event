@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :ensure_logged_in, only: %i[new show create]
   before_action :check_created_by_user, only: %i[edit update destroy]
+  before_action :ensure_validated, only: %i[new edit update destroy]
   require 'rest-client'
   require 'crack'
    

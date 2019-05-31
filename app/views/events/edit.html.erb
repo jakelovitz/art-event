@@ -1,6 +1,8 @@
-<% if !!flash[:errors] %>
+<% if flash[:errors] %>
 	<% flash[:errors].each do |error| %>
-		<p><%= error %></p> <br>
+    <script>
+      M.toast({html: "<%= error %>"})
+    </script>
 	<% end %>
 <% end %>
 

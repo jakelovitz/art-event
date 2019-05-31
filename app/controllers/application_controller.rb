@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Methods to be used in views
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :ensure_validated
 
   # @return [User] or [nil]
   # Retrieves the current user based on their session token if
@@ -32,6 +32,15 @@ class ApplicationController < ActionController::Base
   def logout
     current_user.reset_session_token!
     session[:session_token] = nil
+  end
+
+  def validated?
+    current_user.validated
+  end
+
+  def ensure_validated
+    flash[:validation] = 'Please validate you own your email address.'
+    redirect_to home_path unless validated?
   end
 
 end
