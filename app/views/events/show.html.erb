@@ -1,5 +1,6 @@
+<br>
 <h3><%= @event.event_name %></h3>
-
+<br>
 <img src="<%= @event.img_url %>" class="responsive-img" alt="">
 
 <p><b>Venue: </b><%= @event.venue_name %></p>
@@ -16,12 +17,12 @@
 
 <p><b>Closing Hour: </b><%= @event.closing_hour %></p>
 
-<p><b>Start Date: </b><%= @event.date_start %></p>
+<p><b>Start Date: </b><%= @event.date_start.strftime("%B %d, %Y") %></p>
 
-<p><b>End Date: </b><%= @event.date_end %></p>
+<p><b>End Date: </b><%= @event.date_end.strftime("%B %d, %Y") %></p>
 
-<p><b>Description: </b><%= @event.event_description %></p>
-
+<p align="justify"><b>Description: </b><%= @event.event_description %></p>
+<br>
 <%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
 <% if @event.image.attachment %>
   <%= image_tag @event.image %>
@@ -34,15 +35,21 @@
   <% end %>
 <%else%>
   <%= form_tag user_events_path, method: :post  do %>
+  <br> <br>
     <%= hidden_field_tag :event_id, @event.id %>
     <%= submit_tag "Save Event", class: "waves-effect waves-light btn" %>
   <% end %>
 <% end %>
+  <br><br>
 
-<% if @usercreateevent&.user_id == current_user.id %>
-  <%= button_to "edit", edit_event_path, method: :get %>
-<% end %>
+<%= content_tag :div, class: "row" do %>
 
-<% if @usercreateevent&.user_id == current_user.id %>
-  <%= button_to "delete", @event, method: :delete %>
+  <% if @usercreateevent&.user_id == current_user.id %>
+    <%= button_to "edit", edit_event_path, method: :get, class: "waves-effect waves-light btn col s3" %>
+  <% end %>
+
+  <% if @usercreateevent&.user_id == current_user.id %>
+    <%= button_to "delete", @event, method: :delete, class: "waves-effect waves-light btn col s3 offset-s2" %>
+  <% end %>
 <% end %>
+<br><br><br>

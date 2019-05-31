@@ -1,5 +1,6 @@
+<br>
 <%= form_tag events_api_path do %>
-  <label>Please select the location you're interested in:</label><br>
+  <label><h5>Please select the location you're interested in:</h5></label>
 
   <%= content_tag :div, class: "input-field col s12" do %>
    <%= select_tag :location, options_for_select(@locations), prompt: 'Select Location' %>
@@ -7,7 +8,7 @@
   <br>
 
   <%= content_tag :label do %>
-    <%= check_box_tag :filter_free %><%= content_tag :span, "Filter Free" %>
+    <%= check_box_tag :filter_free %><%= content_tag :span, "Free Events Only" %>
   <% end %>
 
   <br><br>

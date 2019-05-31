@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :ensure_logged_in, only: %i[edit update destroy]
 
   def show
-    user_events = UserEvent.where(user_id: current_user.id).map(&:event_id).uniq
+    user_events = UserEvent.where(user_id: params[:id]).map(&:event_id).uniq
     @events = Event.where(id: user_events)
   end
 
