@@ -40,6 +40,7 @@ gem 'crack'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'materialize-sass'
+gem 'particles-js-rails'
 gem 'rest-client'
 
 group :development, :test do
