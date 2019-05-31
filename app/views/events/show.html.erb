@@ -1,6 +1,10 @@
 <br>
 <h3><%= @event.event_name %></h3>
 <br>
+<% if @event.image.attachment %>
+  <%= image_tag @event.image, class: "responsive-img" %>
+<% end %>
+
 <img src="<%= @event.img_url %>" class="responsive-img" alt="">
 
 <p><b>Venue: </b><%= @event.venue_name %></p>
@@ -24,10 +28,6 @@
 <p align="justify"><b>Description: </b><%= @event.event_description %></p>
 <br>
 <%#= link_to "Save Event", user_path(current_user), class: "waves-effect waves-light btn"  %>
-<% if @event.image.attachment %>
-  <%= image_tag @event.image %>
-<% end %>
-
 <% if @user_events.include?(@event.id) %>
   <%= form_tag({controller: "user_events", action: "destroy"}, method: "delete") do %>
     <%= hidden_field_tag :event_id, @event.id %>
