@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
-      SignupMailer.new_user(@user).deliver_now
       login(@user)
       redirect_to user_path(@user)
     else
