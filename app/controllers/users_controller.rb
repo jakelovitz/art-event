@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy validate]
   before_action :ensure_logged_in, only: %i[edit update destroy]
-  before_action :ensure_validated, only: %i[edit update destroy]
+  # before_action :ensure_validated, only: %i[edit update destroy]
 
   def show
     user_events = UserEvent.where(user_id: params[:id]).map(&:event_id).uniq
